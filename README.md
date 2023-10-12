@@ -1,24 +1,24 @@
 <p align="center">
     <img src=https://img.qimuu.icu/typory/logo.gif width=188/>
 </p>
-<h1 align="center">Qi-API 接口开放平台</h1>
-<p align="center"><strong>Qi-API 接口开放平台是一个为用户和开发者提供全面API接口调用服务的平台 🛠</strong></p>
+<h1 align="center">xl-api 接口开放平台</h1>
+<p align="center"><strong>xl-api 接口开放平台是一个为用户和开发者提供全面API接口调用服务的平台 🛠</strong></p>
 <div align="center">
-<a target="_blank" href="https://github.com/qimu666/qi-api">
-    <img alt="" src="https://github.com/qimu666/qi-api/badge/star.svg?theme=gvp"/>
+<a target="_blank" href="https://github.com/qimu666/xl-api">
+    <img alt="" src="https://github.com/qimu666/xl-api/badge/star.svg?theme=gvp"/>
 </a>
-<a target="_blank" href="https://github.com/qimu666/qi-api">
-    <img alt="" src="https://img.shields.io/github/stars/qimu666/qi-api.svg?style=social&label=Stars"/>
+<a target="_blank" href="https://github.com/qimu666/xl-api">
+    <img alt="" src="https://img.shields.io/github/stars/qimu666/xl-api.svg?style=social&label=Stars"/>
 </a>
     <img alt="Maven" src="https://raster.shields.io/badge/Maven-3.8.1-red.svg"/>
 <a target="_blank" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">
         <img alt="" src="https://img.shields.io/badge/JDK-1.8+-green.svg"/>
 </a>
     <img alt="SpringBoot" src="https://raster.shields.io/badge/SpringBoot-2.7+-green.svg"/>
-<a href="https://github.com/qimu666/qi-api" target="_blank">
-    <img src='https://img.shields.io/github/forks/qimu666/qi-api' alt='GitHub forks' class="no-zoom">
+<a href="https://github.com/qimu666/xl-api" target="_blank">
+    <img src='https://img.shields.io/github/forks/qimu666/xl-api' alt='GitHub forks' class="no-zoom">
 </a>
-<a href="https://github.com/qimu666/qi-api" target="_blank"><img src='https://img.shields.io/github/stars/qimu666/qi-api' alt='GitHub stars' class="no-zoom">
+<a href="https://github.com/qimu666/xl-api" target="_blank"><img src='https://img.shields.io/github/stars/qimu666/xl-api' alt='GitHub stars' class="no-zoom">
 </a>
 </div>
 
@@ -28,25 +28,25 @@
 
 **😀 作为用户您可以通过注册登录账户，获取接口调用权限，并根据自己的需求浏览和选择适合的接口。您可以在线进行接口调试，快速验证接口的功能和效果。** 
 
-**💻 作为开发者 我们提供了[客户端SDK: Qi-API-SDK](https://github.com/qimu666/qi-api-sdk)， 通过[开发者凭证](https://api.qimuu.icu/account/center)即可将轻松集成接口到您的项目中，实现更高效的开发和调用。** 
+**💻 作为开发者 我们提供了[客户端SDK: xl-api-SDK](https://github.com/qimu666/xl-api-sdk)， 通过[开发者凭证](https://api.qimuu.icu/account/center)即可将轻松集成接口到您的项目中，实现更高效的开发和调用。** 
 
-**🤝 您可以将自己的接口接入到Qi-API 接口开放平台平台上，并发布给其他用户使用。 您可以管理和各个接口，以便更好地分析和优化接口性能。** 
+**🤝 您可以将自己的接口接入到xl-api 接口开放平台平台上，并发布给其他用户使用。 您可以管理和各个接口，以便更好地分析和优化接口性能。** 
 
 **👌 我们还提供了[开发者在线文档](https://doc.qimuu.icu/)和技术支持，帮助您快速接入和发布接口。**
 
- **🏁 无论您是用户还是开发者，Qi-API 接口开放平台都致力于提供稳定、安全、高效的接口调用服务，帮助您实现更快速、便捷的开发和调用体验。**
+ **🏁 无论您是用户还是开发者，xl-api 接口开放平台都致力于提供稳定、安全、高效的接口调用服务，帮助您实现更快速、便捷的开发和调用体验。**
 
 ## 网站导航 🧭
 
-- [**Qi-API 后端 🏘️**](https://github.com/qimu666/qi-api)
-- [**Qi-API 前端 🏘**️](https://github.com/qimu666/qi-api-frontend)
+- [**xl-api 后端 🏘️**](https://github.com/qimu666/xl-api)
+- [**xl-api 前端 🏘**️](https://github.com/qimu666/xl-api-frontend)
 
--  **[Qi-API-SDK](https://github.com/qimu666/qi-api-sdk)** 🛠
+-  **[xl-api-SDK](https://github.com/qimu666/xl-api-sdk)** 🛠
 
--  **[Qi-API 接口开放平台 🔗](https://api.qimuu.icu/)**
+-  **[xl-api 接口开放平台 🔗](https://api.qimuu.icu/)**
 
--  **[Qi-API-DOC 开发者文档 📖](https://doc.qimuu.icu/)**
--  **[Qi-API-SDK-demo ✔️](https://github.com/qimu666/qi-api-sdk-demo/blob/master/src/main/java/icu/qimuu/qiapisdkdemo/controller/InvokeController.java)**
+-  **[xl-api-DOC 开发者文档 📖](https://doc.qimuu.icu/)**
+-  **[xl-api-SDK-demo ✔️](https://github.com/qimu666/xl-api-sdk-demo/blob/master/src/main/java/icu/qimuu/qiapisdkdemo/controller/InvokeController.java)**
 
 
 ## 目录结构 📑
@@ -54,13 +54,13 @@
 
 | 目录                                                     | 描述               |
 |--------------------------------------------------------| ------------------ |
-| **🏘️ [qi-api-backend](./qi-api-backend)**             | Qi-API后端服务模块 |
-| **🏘️ [qi-api-common](./qi-api-common)**               | 公共服务模块       |
-| **🕸️ [qi-api-gateway](./qi-api-gateway)**             | 网关模块           |
-| **🔗 [qi-api-interface](./qi-api-interface)**          | 接口模块           |
-| **🛠 [qi-qpi-sdk](https://github.com/qimu666/qi-api-sdk)** | 开发者调用sdk      |
-| **📘 [qi-api-doc](https://doc.qimuu.icu/)**            | 接口在线文档       |
-| **✔️ [Qi-API-SDK-Demo](https://github.com/qimu666/qi-api-sdk-demo/blob/master/src/main/java/icu/qimuu/qiapisdkdemo/controller/InvokeController.java)** | sdk调用Demo |
+| **🏘️ [xl-api-backend](./xl-api-backend)**             | xl-api后端服务模块 |
+| **🏘️ [xl-api-common](./xl-api-common)**               | 公共服务模块       |
+| **🕸️ [xl-api-gateway](./xl-api-gateway)**             | 网关模块           |
+| **🔗 [xl-api-interface](./xl-api-interface)**          | 接口模块           |
+| **🛠 [qi-qpi-sdk](https://github.com/qimu666/xl-api-sdk)** | 开发者调用sdk      |
+| **📘 [xl-api-doc](https://doc.qimuu.icu/)**            | 接口在线文档       |
+| **✔️ [xl-api-SDK-Demo](https://github.com/qimu666/xl-api-sdk-demo/blob/master/src/main/java/icu/qimuu/qiapisdkdemo/controller/InvokeController.java)** | sdk调用Demo |
 
 ## 项目流程 🗺️
 
@@ -135,7 +135,7 @@ yarn build or npm run build
 
 |                          **功能**                           | 游客 | **普通用户** | **管理员** |
 | ----------------------------------------------------- |--------------|-----|-----|
-| [**Qi-API-SDK**](https://github.com/qimu666/qi-api-sdk)使用 | ✅ | ✅ |     ✅      |
+| [**xl-api-SDK**](https://github.com/qimu666/xl-api-sdk)使用 | ✅ | ✅ |     ✅      |
 |        **[开发者API在线文档](http://doc.qimuu.icu)**        | ✅ | ✅ |     ✅      |
 |                     邀请好友注册得坤币                      | ❌ | ✅ |     ✅      |
 |                    切换主题、深色、暗色                     | ✅ | ✅ | ✅ |

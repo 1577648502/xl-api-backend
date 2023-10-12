@@ -1,0 +1,102 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: xl-api-backend
+  # DataSource Config todo 修改为自己的数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/qi_api
+    username: root
+    password: 12345678
+  mvc:
+    path match:
+      matching-strategy: ANT_PATH_MATCHER
+  # session 失效时间（分钟）
+  session:
+    timeout: 86400
+    store-type: redis
+  # redis 配置
+  redis:
+    port: 6379
+    host: localhost
+    database: 0
+  #  邮箱配置 todo 修改为自己的邮箱发送配置
+  mail:
+    host: smtp.qq.com
+    username: 379155404@qq.com
+    password: tmptribjvlcwcbef
+    emailFrom: 379155404@qq.com
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+server:
+  port: 7529
+  address: 0.0.0.0
+  servlet:
+    context-path: /api
+    session:
+      cookie:
+        # 一周
+        max-age: 604800
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+## xl-api-SDK 配置，如需使用自己的网关host需修改
+qi:
+  api:
+    client:
+      access-key: ceb8e6d37ec94639b186248b1955bb26
+      secret-key: 2c26165af724431bf2a1ac81de76e3c5
+      # 本地网关地址，可修改为自己的网关，用于本地测试，线上网关地址等
+#      host:  http://localhost:8081/api
+
+minio:
+  host: http://127.0.0.1:9000
+  url: ${minio.host}/${minio.bucket}/
+  access-key: minioadmin
+  secret-key: minioadmin
+  bucket: public
+
+# 微信支付配置
+wx:
+  pay:
+    appId: wxxxxxxxxx67e8dc
+    mchId: 1x0xxxx68
+    apiV3Key: xxxxxbxxx3xxxx3xxx4
+    privateKeyPath: classpath:/pem/apiclient_key.pem
+    privateCertPath: classpath:/pem/apiclient_cert.pem
+    # 本地测试用ngrok内网穿透，这个内网穿透地址，可以修改为自己的。上线修改为后端的接口地址即可
+    notifyUrl: https://beloved-massive-sheepdog.ngrok-free.app/api/order/notify/order
+
+# 支付宝支付配置
+alipay:
+  appId: 9021000129635178
+  sellerId: 2088721016663828
+  # 本地测试用ngrok内网穿透，这个内网穿透地址，可以修改为自己的。上线修改为后端的接口地址即可
+  #  notifyUrl: https://beloved-massive-sheepdog.ngrok-free.app/api/order/notify/order
+  notifyUrl: https://7177-2408-8956-7a80-3870-904c-8f5c-8031-8bd.ngrok-free.app/api/order/notify/order
+  returnUrl: http://localhost:8000/account/center
+  private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDV9YDxtz0Mfb4rINeCq2L6Bh/33tXFWzLVn+FE+3QgIL4edxe9zi7Yu8mmQAxLmUUfCtNmfpoYuZHeyRCQwmoWqFWOYHohRn0ZGfHPpqVS++5KLbEopBbkRKD92IokLzTMW7umi8A+a2X847Hu5KTDpKHO71lwHsexq0b4W3ISXHK5yUphQ9sUUX6cXu5vPaORHqZ7NAD4fytwpvPtbf/ZrYfx3woQk/pGORJh3/GQhxOhCdBV9E6QVbWowYP/L1UJSR1/aWwqpRMT04+8+76Z+smzFRsnyeOTKKPYZWmR3K4qHXzIcObem6G+x/xM5KXV93osoYVRUeugkeFTw/2nAgMBAAECggEAXEK1C4YcSRqfujE7PRlyYKXrexMX0zZ0QTHkDb7wYDo+QRzRnAMgqEyxs4LCyoaZC727UuMcx7Sddhf1kLaE0Khd3Ds17stafkx1vTj66UHBizMQxZmcVWpSkaOiTeAdQFH+JN72UvQ00kvNGlp1wfdn3rfPNU3Qhoh43fdwxQFWVZpbSc3OxnRv3Vh82nFJnuqLdZaJjY7pcp5fRngBoGdrgrKdqZL/WOK+NG2ViG0AGZS7CIiA+cJV3aZM7KrJna6+ulDdivHTw1/Ti9v+xQ5BL5WROT9oT2AHPQZB4t0HOaebd/x/mH4D0BuImDxIw1TKHspci5FJTnxujdi+QQKBgQD1dKYc7BtkFrZ6v6qG1julqCwwkcolNbwtC4EJEW4YL+gpOSmjOroL+AV5y0g/JAfMTQtIXcYWTa1DsCiFQrLKYptmFptWgUB48Acq6ExTkMutbQwuSHlQJFxdH+H91cacvsmeM4wyqDbXIuKjVl+Sug5aF8SZB20rti0KHnMfHwKBgQDfJnnzxSepkoCK5MgrRrLj7XmYcUbKcIpUzTdwH7qx/tdX4+GkLe64rcU7i1yUebx5hsB9xqbLyeSihqxkyITkJa3JAo27jAxhtgvjJhK23bqhh3NEf8suT+Lvh6ezr+vMlbJlc6qM9gadL/U2ScehFMIfk/iKQW8oyBmSO4S4eQKBgCm/tH1Y33PPtSv9q7iRecW8a/+63GIl2KLkwQbU0yAEDf3s/hsIYxqkDfJgVCKBM15ZgGDHqmiiv6SyssGvzY9E5F+h2rwE8f1f/igbKNhR2YLe+GJq609pT9h7EspE8So5/TsOU3tORz2ibmAP0eO4B7blMghBTh1QOCrvcO9LAoGBAI1stjePiQ6IYd0lF9ONkAyyUbESgZoFbzZFhVATW+A5McNrEnNaBQSYZPrS3Q7ghFnE1DQidU2Mm9GBZrrM9qQdWSGe87KcFLDMjoYceBnbNs/up1gPYfbs/FdwcxGHefsEGLcBcmK5/gEbBt6sLc/h9xHKVudQhyGih8pM3FWJAoGBAL41VBREZrmc7KGAjLIRzaserIjOl7xgw9cX3pmEB3L7euJujeU+bPJiyPmZ6KHVUqGasDwyG9la8k4lzDmGuiu0NL/FmgJmfH27/kXIQHdaGZZ+pvdRelTFPDkNukbE3JRNfYYqjrywgsccDYE862avg8hTrD/bYvXxwAkC5Px6
+  ali-pay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhCSS4/8LoFrAYmtizrspeNVC7WICAB5wTSPJnsSPwSmV3ZewKzjTdZinu6RwqciqjS8Jyf+/zCN3FGpkxaXHhKHohhJZILTd5A9crK4ijsSwXm+59PBG7IUdPccZQyMJu4ASbTfaCxdw5pT1stCLqWcADnYI5yde2Z0erIujserhyEY9i4dfGOixKBZUHIEzbpmBSs1TrAUlXjlB3qURNfmMY5ValPk4PZrzdtIqh8Al13J0pAtOW1mEgBMYVDCbIKav3rgkCPeGiFXLDf6paR9u0qtXczp8pDBMgHxevpH+RzYqRomjXvoI2XtBPxdKsROjn4Pa5Z6SC2vLS9n1EwIDAQAB
+
+dubbo:
+  application:
+    enable-file-cache: false
+    name: dubbo-springboot-demo-provider
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    # todo 线上修改为服务器内网地址，参考nacos启动后的链接
+    address: nacos://localhost:8848
