@@ -59,6 +59,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return long
      */
     @Override
+    //生明事务
     @Transactional(rollbackFor = Exception.class)
     public long userRegister(UserRegisterRequest userRegisterRequest) {
         String userAccount = userRegisterRequest.getUserAccount();
@@ -90,6 +91,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (!userPassword.equals(checkPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "两次输入的密码不一致");
         }
+//        生成Redis分布式锁名称 使用.intern()保证生成的唯一性
         String redissonLock = ("userRegister_" + userAccount).intern();
         return redissonLockUtil.redissonDistributedLocks(redissonLock, () -> {
             // 账户不能重复
@@ -164,6 +166,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (StringUtils.isBlank(cacheCaptcha)) {
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "验证码已过期,请重新获取");
         }
+        //去除验证码的空白字符
         captcha = captcha.trim();
         if (!cacheCaptcha.equals(captcha)) {
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "验证码输入有误");
@@ -307,6 +310,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userVO;
     }
 
+    /**
+     * 绑定邮箱
+     * @param userEmailLoginRequest 用户电子邮件登录请求
+     * @param request               要求
+     * @return
+     */
     @Override
     public UserVO userBindEmail(UserBindEmailRequest userEmailLoginRequest, HttpServletRequest request) {
         String emailAccount = userEmailLoginRequest.getEmailAccount();
@@ -349,6 +358,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return loginUser;
     }
 
+    /**
+     * 解绑邮箱
+     * @param userUnBindEmailRequest 用户取消绑定电子邮件请求
+     * @param request                要求
+     * @return
+     */
     @Override
     public UserVO userUnBindEmail(UserUnBindEmailRequest userUnBindEmailRequest, HttpServletRequest request) {
         String emailAccount = userUnBindEmailRequest.getEmailAccount();
@@ -503,6 +518,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
     }
 
+    /**
+     * 更新用户ak sk
+     * @param loginUser 登录用户
+     * @return
+     */
     @Override
     public UserVO updateVoucher(User loginUser) {
         String accessKey = DigestUtils.md5DigestAsHex((Arrays.toString(RandomUtil.randomBytes(10)) + UserConstant.SALT + UserConstant.VOUCHER).getBytes());
@@ -518,6 +538,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return userVO;
     }
 
+    /**
+     * 增加用户积分
+     * @param userId    用户id
+     * @param addPoints 添加点
+     * @return
+     */
     @Override
     public boolean addWalletBalance(Long userId, Integer addPoints) {
         LambdaUpdateWrapper<User> userLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
@@ -526,6 +552,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return this.update(userLambdaUpdateWrapper);
     }
 
+    /**
+     * 减少用户积分
+     * @param userId      用户id
+     * @param reduceScore 减少分数
+     * @return
+     */
     @Override
     public boolean reduceWalletBalance(Long userId, Integer reduceScore) {
         LambdaUpdateWrapper<User> userLambdaUpdateWrapper = new LambdaUpdateWrapper<>();

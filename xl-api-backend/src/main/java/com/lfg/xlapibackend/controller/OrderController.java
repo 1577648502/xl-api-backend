@@ -18,6 +18,8 @@ import com.lfg.xlapibackend.model.vo.UserVO;
 import com.lfg.xlapibackend.service.OrderService;
 import com.lfg.xlapibackend.service.ProductOrderService;
 import com.lfg.xlapibackend.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -43,6 +45,7 @@ import static com.lfg.xlapibackend.model.enums.PaymentStatusEnum.SUCCESS;
  * @Version: 1.0
  * @Description:
  */
+@Tag(name = "endregion", description = "endregion")
 @RestController
 @Slf4j
 @RequestMapping("/order")
@@ -63,6 +66,7 @@ public class OrderController {
      *
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "取消订单订单", description = "取消订单订单")
     @PostMapping("/closed")
     public BaseResponse<Boolean> closedProductOrder(String orderNo) {
         if (StringUtils.isBlank(orderNo)) {
@@ -78,6 +82,7 @@ public class OrderController {
         return ResultUtils.success(closedResult);
     }
 
+    @Operation(summary = "", description = "")
     @PostMapping("/delete")
     public BaseResponse<Boolean> deleteProductOrder(long id, HttpServletRequest request) {
         if (id <= 0) {
@@ -102,6 +107,7 @@ public class OrderController {
      * @param id id
      * @return {@link BaseResponse}<{@link ProductOrderVo}>
      */
+    @Operation(summary = "按id获取产品订单", description = "按id获取产品订单")
     @GetMapping("/get")
     public BaseResponse<ProductOrderVo> getProductOrderById(String id) {
         if (StringUtils.isBlank(id)) {
@@ -122,6 +128,7 @@ public class OrderController {
      * @param request                  请求
      * @return {@link BaseResponse}<{@link Page}<{@link ProductOrder}>>
      */
+    @Operation(summary = "分页获取列表", description = "分页获取列表")
     @GetMapping("/list/page")
     public BaseResponse<OrderVo> listProductOrderByPage(ProductOrderQueryRequest productOrderQueryRequest, HttpServletRequest request) {
         if (productOrderQueryRequest == null) {
@@ -174,6 +181,7 @@ public class OrderController {
      * @param payCreateRequest 付款创建请求
      * @return {@link BaseResponse}<{@link ProductOrderVo}>
      */
+    @Operation(summary = "创建订单", description = "创建订单")
     @PostMapping("/create")
     public BaseResponse<ProductOrderVo> createOrder(@RequestBody PayCreateRequest payCreateRequest, HttpServletRequest request) {
         if (ObjectUtils.anyNull(payCreateRequest) || StringUtils.isBlank(payCreateRequest.getProductId())) {
@@ -199,6 +207,7 @@ public class OrderController {
      * @param productOrderQueryRequest 接口订单查询请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "查询订单状态", description = "查询订单状态")
     @PostMapping("/query/status")
     public BaseResponse<Boolean> queryOrderStatus(@RequestBody ProductOrderQueryRequest productOrderQueryRequest) {
         if (ObjectUtils.isEmpty(productOrderQueryRequest) || StringUtils.isBlank(productOrderQueryRequest.getOrderNo())) {
@@ -226,6 +235,7 @@ public class OrderController {
      * @return {@link String}
      */
 
+    @Operation(summary = "解析订单通知结果 通知频率为15s/15s/30s/3m/10m/20m/30m/30m/30m/60m/3h/3h/3h/6h/6h - 总计 24h4m", description = "解析订单通知结果 通知频率为15s/15s/30s/3m/10m/20m/30m/30m/30m/60m/3h/3h/3h/6h/6h - 总计 24h4m")
     @PostMapping("/notify/order")
     public String parseOrderNotifyResult(@RequestBody String notifyData, HttpServletRequest request) {
         System.out.println("支付宝异步回调");

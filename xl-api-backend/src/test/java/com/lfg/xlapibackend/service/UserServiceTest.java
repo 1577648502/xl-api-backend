@@ -7,9 +7,6 @@ import cn.hutool.core.util.RandomUtil;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.alipay.api.response.AlipayTradeRefundResponse;
-import com.github.binarywang.wxpay.bean.request.WxPayRefundV3Request;
-import com.github.binarywang.wxpay.bean.result.WxPayRefundV3Result;
-import com.github.binarywang.wxpay.service.WxPayService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -71,8 +68,6 @@ class UserServiceTest {
     public static String apiV3Key = "bf389934bf389934bf389934bf389934";
 
     @Resource
-    private WxPayService wxPayService;
-    @Resource
     private UserService userService;
     @Resource
     private InterfaceInfoService interfaceInfoService;
@@ -127,35 +122,6 @@ class UserServiceTest {
     }
 
     @SneakyThrows
-    @Test
-    void pay() {
-        // WxPayUnifiedOrderV3Request request = new WxPayUnifiedOrderV3Request();
-        // Amount amount = new Amount();
-        // amount.setTotal(10);
-        // request.setAmount(amount);
-        // request.setMchid("1609724068");
-        // request.setDescription("测试商品标题");
-        // request.setNotifyUrl("https://qimuu.icu/");
-        // request.setOutTradeNo("order_162226155111116789");
-
-        // String v3 = wxPayService.createOrderV3(TradeTypeEnum.NATIVE, request);
-        // System.err.println(v3);
-
-        WxPayRefundV3Request wxPayRefundV3Request = new WxPayRefundV3Request();
-        // wxPayRefundV3Request.setTransactionId("4200001939202308225870750928");
-        wxPayRefundV3Request.setOutTradeNo("order_06318873058334672021");
-        wxPayRefundV3Request.setOutRefundNo("order_06318873058334672021");
-        wxPayRefundV3Request.setReason("重复购买");
-        WxPayRefundV3Request.Amount amount1 = new WxPayRefundV3Request.Amount();
-        amount1.setRefund(1);
-        amount1.setTotal(1);
-        amount1.setCurrency("CNY");
-        wxPayRefundV3Request.setAmount(amount1);
-        WxPayRefundV3Result wxPayRefundV3Result = wxPayService.refundV3(wxPayRefundV3Request);
-        System.err.println(wxPayRefundV3Result);
-
-
-    }
 
     @Test
     void refund() throws AlipayApiException {

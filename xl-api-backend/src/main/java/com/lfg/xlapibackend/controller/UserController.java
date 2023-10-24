@@ -17,6 +17,8 @@ import com.lfg.xlapibackend.model.entity.User;
 import com.lfg.xlapibackend.model.enums.UserAccountStatusEnum;
 import com.lfg.xlapibackend.model.vo.UserVO;
 import com.lfg.xlapibackend.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -45,6 +47,7 @@ import static com.lfg.xlapibackend.utils.EmailUtil.buildEmailContent;
  *
  * @author lfg
  */
+@Tag(name = "endregion", description = "endregion")
 @RestController
 @RequestMapping("/user")
 @Slf4j
@@ -68,6 +71,7 @@ public class UserController {
      * @param userRegisterRequest 用户注册请求
      * @return {@link BaseResponse}<{@link Long}>
      */
+    @Operation(summary = "用户注册", description = "用户注册")
     @PostMapping("/register")
     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
         if (userRegisterRequest == null) {
@@ -84,6 +88,7 @@ public class UserController {
      * @param request          请求
      * @return {@link BaseResponse}<{@link User}>
      */
+    @Operation(summary = "用户登录", description = "用户登录")
     @PostMapping("/login")
     public BaseResponse<UserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
@@ -105,6 +110,7 @@ public class UserController {
      * @param request               请求
      * @return {@link BaseResponse}<{@link User}>
      */
+    @Operation(summary = "用户电子邮件登录", description = "用户电子邮件登录")
     @PostMapping("/email/login")
     public BaseResponse<UserVO> userEmailLogin(@RequestBody UserEmailLoginRequest userEmailLoginRequest, HttpServletRequest request) {
         if (userEmailLoginRequest == null) {
@@ -122,6 +128,7 @@ public class UserController {
      * @param userBindEmailRequest 用户绑定电子邮件请求
      * @return {@link BaseResponse}<{@link UserVO}>
      */
+    @Operation(summary = "用户绑定电子邮件", description = "用户绑定电子邮件")
     @PostMapping("/bind/login")
     public BaseResponse<UserVO> userBindEmail(@RequestBody UserBindEmailRequest userBindEmailRequest, HttpServletRequest request) {
         if (userBindEmailRequest == null) {
@@ -138,6 +145,7 @@ public class UserController {
      * @param userUnBindEmailRequest 用户取消绑定电子邮件请求
      * @return {@link BaseResponse}<{@link UserVO}>
      */
+    @Operation(summary = "用户取消绑定电子邮件", description = "用户取消绑定电子邮件")
     @PostMapping("/unbindEmail")
     public BaseResponse<UserVO> userUnBindEmail(@RequestBody UserUnBindEmailRequest userUnBindEmailRequest, HttpServletRequest request) {
         if (userUnBindEmailRequest == null) {
@@ -154,6 +162,7 @@ public class UserController {
      * @param userEmailRegisterRequest 用户电子邮件注册请求
      * @return {@link BaseResponse}<{@link UserVO}>
      */
+    @Operation(summary = "用户电子邮件注册", description = "用户电子邮件注册")
     @PostMapping("/email/register")
     public BaseResponse<Long> userEmailRegister(@RequestBody UserEmailRegisterRequest userEmailRegisterRequest) {
         if (userEmailRegisterRequest == null) {
@@ -170,6 +179,7 @@ public class UserController {
      * @param emailAccount 电子邮件帐户
      * @return {@link BaseResponse}<{@link String}>
      */
+    @Operation(summary = "获取验证码", description = "获取验证码")
     @GetMapping("/getCaptcha")
     public BaseResponse<Boolean> getCaptcha(String emailAccount) {
         if (StringUtils.isBlank(emailAccount)) {
@@ -190,6 +200,13 @@ public class UserController {
         }
     }
 
+    /**
+     * 发送邮件
+     * @param emailAccount
+     * @param captcha
+     * @throws MessagingException
+     */
+    @Operation(summary = "发送邮件", description = "发送邮件")
     private void sendEmail(String emailAccount, String captcha) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         // 邮箱发送内容组成
@@ -207,6 +224,7 @@ public class UserController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "用户注销", description = "用户注销")
     @PostMapping("/logout")
     public BaseResponse<Boolean> userLogout(HttpServletRequest request) {
         if (request == null) {
@@ -222,6 +240,7 @@ public class UserController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link UserVO}>
      */
+    @Operation(summary = "获取当前登录用户", description = "获取当前登录用户")
     @GetMapping("/get/login")
     public BaseResponse<UserVO> getLoginUser(HttpServletRequest request) {
         UserVO user = userService.getLoginUser(request);
@@ -241,6 +260,7 @@ public class UserController {
      * @param request        请求
      * @return {@link BaseResponse}<{@link Long}>
      */
+    @Operation(summary = "添加用户", description = "添加用户")
     @PostMapping("/add")
     @AuthCheck(mustRole = ADMIN_ROLE)
     public BaseResponse<Long> addUser(@RequestBody UserAddRequest userAddRequest, HttpServletRequest request) {
@@ -266,6 +286,7 @@ public class UserController {
      * @param request       请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "删除用户", description = "删除用户")
     @PostMapping("/delete")
     @AuthCheck(mustRole = ADMIN_ROLE)
     public BaseResponse<Boolean> deleteUser(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
@@ -282,6 +303,7 @@ public class UserController {
      * @param request           请求
      * @return {@link BaseResponse}<{@link User}>
      */
+    @Operation(summary = "更新用户", description = "更新用户")
     @PostMapping("/update")
     @Transactional(rollbackFor = Exception.class)
     public BaseResponse<UserVO> updateUser(@RequestBody UserUpdateRequest userUpdateRequest, HttpServletRequest request) {
@@ -328,6 +350,7 @@ public class UserController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link UserVO}>
      */
+    @Operation(summary = "根据 id 获取用户", description = "根据 id 获取用户")
     @GetMapping("/get")
     public BaseResponse<UserVO> getUserById(int id, HttpServletRequest request) {
         if (id <= 0) {
@@ -346,6 +369,7 @@ public class UserController {
      * @param request          请求
      * @return {@link BaseResponse}<{@link List}<{@link UserVO}>>
      */
+    @Operation(summary = "获取用户列表", description = "获取用户列表")
     @GetMapping("/list")
     public BaseResponse<List<UserVO>> listUser(UserQueryRequest userQueryRequest, HttpServletRequest request) {
         if (null == userQueryRequest) {
@@ -371,6 +395,7 @@ public class UserController {
      * @param request          请求
      * @return {@link BaseResponse}<{@link Page}<{@link UserVO}>>
      */
+    @Operation(summary = "分页获取用户列表", description = "分页获取用户列表")
     @GetMapping("/list/page")
     public BaseResponse<Page<UserVO>> listUserByPage(UserQueryRequest userQueryRequest, HttpServletRequest request) {
         User userQuery = new User();
@@ -403,6 +428,14 @@ public class UserController {
         return ResultUtils.success(userVoPage);
     }
 
+    /**
+     *
+     * 更新用户ak sk
+     *
+     * @param request
+     * @return
+     */
+    @Operation(summary = "更新用户ak sk", description = "更新用户ak sk")
     @PostMapping("/update/voucher")
     public BaseResponse<UserVO> updateVoucher(HttpServletRequest request) {
         if (request == null) {
@@ -421,6 +454,7 @@ public class UserController {
      * @param invitationCode 邀请码
      * @return {@link BaseResponse}<{@link UserVO}>
      */
+    @Operation(summary = "通过邀请码获取用户", description = "通过邀请码获取用户")
     @PostMapping("/get/invitationCode")
     public BaseResponse<UserVO> getUserByInvitationCode(String invitationCode) {
         if (StringUtils.isBlank(invitationCode)) {
@@ -443,6 +477,7 @@ public class UserController {
      * @param idRequest id请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "解封", description = "解封")
     @AuthCheck(mustRole = ADMIN_ROLE)
     @PostMapping("/normal")
     public BaseResponse<Boolean> normalUser(@RequestBody IdRequest idRequest) {
@@ -465,6 +500,7 @@ public class UserController {
      * @param request   请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "封号", description = "封号")
     @PostMapping("/ban")
     @AuthCheck(mustRole = ADMIN_ROLE)
     public BaseResponse<Boolean> banUser(@RequestBody IdRequest idRequest, HttpServletRequest request) {

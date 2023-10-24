@@ -52,11 +52,11 @@ mybatis-plus:
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 
 ## xl-api-SDK 配置，如需使用自己的网关host需修改
-qi:
-  api:
-    client:
-      access-key: ceb8e6d37ec94639b186248b1955bb26
-      secret-key: 2c26165af724431bf2a1ac81de76e3c5
+#qi:
+#  api:
+#    client:
+#      access-key: ceb8e6d37ec94639b186248b1955bb26
+#      secret-key: 2c26165af724431bf2a1ac81de76e3c5
       # 本地网关地址，可修改为自己的网关，用于本地测试，线上网关地址等
 #      host:  http://localhost:8081/api
 
@@ -68,15 +68,15 @@ minio:
   bucket: public
 
 # 微信支付配置
-wx:
-  pay:
-    appId: wxxxxxxxxx67e8dc
-    mchId: 1x0xxxx68
-    apiV3Key: xxxxxbxxx3xxxx3xxx4
-    privateKeyPath: classpath:/pem/apiclient_key.pem
-    privateCertPath: classpath:/pem/apiclient_cert.pem
-    # 本地测试用ngrok内网穿透，这个内网穿透地址，可以修改为自己的。上线修改为后端的接口地址即可
-    notifyUrl: https://beloved-massive-sheepdog.ngrok-free.app/api/order/notify/order
+#wx:
+#  pay:
+#    appId: wxxxxxxxxx67e8dc
+#    mchId: 1x0xxxx68
+#    apiV3Key: xxxxxbxxx3xxxx3xxx4
+#    privateKeyPath: classpath:/pem/apiclient_key.pem
+#    privateCertPath: classpath:/pem/apiclient_cert.pem
+#    # 本地测试用ngrok内网穿透，这个内网穿透地址，可以修改为自己的。上线修改为后端的接口地址即可
+#    notifyUrl: https://beloved-massive-sheepdog.ngrok-free.app/api/order/notify/order
 
 # 支付宝支付配置
 alipay:

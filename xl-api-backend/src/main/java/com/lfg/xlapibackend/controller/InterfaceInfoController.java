@@ -23,6 +23,8 @@ import com.lfg.xlapisdk.client.QiApiClient;
 import com.lfg.xlapisdk.model.request.CurrencyRequest;
 import com.lfg.xlapisdk.model.response.ResultResponse;
 import com.lfg.xlapisdk.service.ApiService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -41,6 +43,7 @@ import java.util.stream.Collectors;
  *
  * @author lfg
  */
+@Tag(name = "endregion", description = "endregion")
 @RestController
 @RequestMapping("/interfaceInfo")
 @Slf4j
@@ -63,6 +66,7 @@ public class InterfaceInfoController {
      * @param request                 请求
      * @return {@link BaseResponse}<{@link Long}>
      */
+    @Operation(summary = "添加接口信息 创建", description = "添加接口信息 创建")
     @PostMapping("/add")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Long> addInterfaceInfo(@RequestBody InterfaceInfoAddRequest interfaceInfoAddRequest, HttpServletRequest request) {
@@ -100,6 +104,7 @@ public class InterfaceInfoController {
      * @param request       请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "删除接口信息", description = "删除接口信息")
     @PostMapping("/delete")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> deleteInterfaceInfo(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
@@ -128,6 +133,7 @@ public class InterfaceInfoController {
      * @param interfaceInfoUpdateAvatarRequest 界面信息更新头像请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "更新接口头像url", description = "更新接口头像url")
     @PostMapping("/updateInterfaceInfoAvatar")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> updateInterfaceInfoAvatarUrl(@RequestBody InterfaceInfoUpdateAvatarRequest interfaceInfoUpdateAvatarRequest,
@@ -147,6 +153,7 @@ public class InterfaceInfoController {
      * @param request                    请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "更新接口信息", description = "更新接口信息")
     @PostMapping("/update")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @Transactional(rollbackFor = Exception.class)
@@ -190,6 +197,7 @@ public class InterfaceInfoController {
      * @param id id
      * @return {@link BaseResponse}<{@link InterfaceInfo}>
      */
+    @Operation(summary = "通过id获取接口信息", description = "通过id获取接口信息")
     @GetMapping("/get")
     public BaseResponse<InterfaceInfo> getInterfaceInfoById(long id) {
         if (id <= 0) {
@@ -205,6 +213,7 @@ public class InterfaceInfoController {
      * @param interfaceInfoQueryRequest 接口信息查询请求
      * @return {@link BaseResponse}<{@link List}<{@link InterfaceInfo}>>
      */
+    @Operation(summary = "获取列表（仅管理员可使用）", description = "获取列表（仅管理员可使用）")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @GetMapping("/list")
     public BaseResponse<List<InterfaceInfo>> listInterfaceInfo(InterfaceInfoQueryRequest interfaceInfoQueryRequest) {
@@ -226,6 +235,7 @@ public class InterfaceInfoController {
      * @param request                   请求
      * @return {@link BaseResponse}<{@link Page}<{@link InterfaceInfo}>>
      */
+    @Operation(summary = "分页获取列表", description = "分页获取列表")
     @GetMapping("/list/page")
     public BaseResponse<Page<InterfaceInfo>> listInterfaceInfoByPage(InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request) {
         if (interfaceInfoQueryRequest == null) {
@@ -277,6 +287,7 @@ public class InterfaceInfoController {
      * @param request                   请求
      * @return {@link BaseResponse}<{@link Page}<{@link InterfaceInfo}>>
      */
+    @Operation(summary = "按搜索文本页查询数据", description = "按搜索文本页查询数据")
     @GetMapping("/get/searchText")
     public BaseResponse<Page<InterfaceInfo>> listInterfaceInfoBySearchTextPage(InterfaceInfoSearchTextRequest interfaceInfoQueryRequest, HttpServletRequest request) {
         if (interfaceInfoQueryRequest == null) {
@@ -312,6 +323,7 @@ public class InterfaceInfoController {
      * @param idRequest id请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "发布", description = "发布")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @PostMapping("/online")
     public BaseResponse<Boolean> onlineInterfaceInfo(@RequestBody IdRequest idRequest, HttpServletRequest request) {
@@ -334,6 +346,7 @@ public class InterfaceInfoController {
      * @param request   请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "下线", description = "下线")
     @PostMapping("/offline")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> offlineInterfaceInfo(@RequestBody IdRequest idRequest, HttpServletRequest request) {
@@ -358,6 +371,7 @@ public class InterfaceInfoController {
      * @param request       请求
      * @return {@link BaseResponse}<{@link Object}>
      */
+    @Operation(summary = "调用接口", description = "调用接口")
     @PostMapping("/invoke")
     @Transactional(rollbackFor = Exception.class)
     public BaseResponse<Object> invokeInterface(@RequestBody InvokeRequest invokeRequest, HttpServletRequest request) {

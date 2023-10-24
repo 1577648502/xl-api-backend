@@ -9,6 +9,10 @@ import com.lfg.xlapibackend.model.enums.ImageStatusEnum;
 import com.lfg.xlapibackend.model.file.UploadFileRequest;
 import com.lfg.xlapibackend.model.vo.ImageVo;
 import com.lfg.xlapibackend.utils.MinioUtilS;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +26,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
+/**
+ * 上传文件
+ */
+@Tag(name = "上传文件", description = "上传文件")
 @RestController
 @RequestMapping("/file")
 @Slf4j
@@ -35,6 +43,15 @@ public class MinioController {
     @Value("${minio.bucket}")
     private String bucketName;
 
+    /**
+     * 上传文件
+     * @param multipartFile 文件类型
+     * @param uploadFileRequest 文件信息
+     * @param request 用户信息
+     * @return
+     */
+    @Parameter(name = "multipartFile", description = "文件类型", in = ParameterIn.QUERY, required = true)
+    @Operation(summary = "上传文件", description = "上传文件")
     @PostMapping("/upload")
     public BaseResponse<ImageVo> uploadFile(@RequestPart("file") MultipartFile multipartFile, UploadFileRequest
             uploadFileRequest, HttpServletRequest request) {

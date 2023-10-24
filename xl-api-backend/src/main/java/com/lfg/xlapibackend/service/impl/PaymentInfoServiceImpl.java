@@ -2,7 +2,6 @@ package com.lfg.xlapibackend.service.impl;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.binarywang.wxpay.bean.result.WxPayOrderQueryV3Result;
 import com.lfg.xlapibackend.mapper.PaymentInfoMapper;
 import com.lfg.xlapibackend.model.entity.PaymentInfo;
 import com.lfg.xlapibackend.model.vo.PaymentInfoVo;
@@ -26,8 +25,6 @@ public class PaymentInfoServiceImpl extends ServiceImpl<PaymentInfoMapper, Payme
         String tradeState = paymentInfoVo.getTradeState();
         String tradeStateDesc = paymentInfoVo.getTradeStateDesc();
         String successTime = paymentInfoVo.getSuccessTime();
-        WxPayOrderQueryV3Result.Payer payer = paymentInfoVo.getPayer();
-        WxPayOrderQueryV3Result.Amount amount = paymentInfoVo.getAmount();
 
         PaymentInfo paymentInfo = new PaymentInfo();
         paymentInfo.setOrderNo(paymentInfoVo.getOutTradeNo());
@@ -37,11 +34,6 @@ public class PaymentInfoServiceImpl extends ServiceImpl<PaymentInfoMapper, Payme
         if (StringUtils.isNotBlank(successTime)) {
             paymentInfo.setSuccessTime(successTime);
         }
-        paymentInfo.setOpenid(payer.getOpenid());
-        paymentInfo.setPayerTotal(amount.getPayerTotal());
-        paymentInfo.setCurrency(amount.getCurrency());
-        paymentInfo.setPayerCurrency(amount.getPayerCurrency());
-        paymentInfo.setTotal(amount.getTotal());
         paymentInfo.setTradeStateDesc(tradeStateDesc);
         paymentInfo.setContent(JSONUtil.toJsonStr(paymentInfoVo));
         return this.save(paymentInfo);

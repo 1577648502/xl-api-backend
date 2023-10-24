@@ -15,7 +15,6 @@ import com.alipay.api.response.AlipayTradePagePayResponse;
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.binarywang.wxpay.bean.result.WxPayOrderQueryV3Result;
 import com.ijpay.alipay.AliPayApi;
 import com.ijpay.alipay.AliPayApiConfigKit;
 import com.lfg.xlapibackend.exception.BusinessException;
@@ -241,15 +240,6 @@ public class AlipayOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Prod
                 paymentInfoVo.setTradeState(alipayTradeQueryResponse.getTradeStatus());
                 paymentInfoVo.setTradeStateDesc("支付成功");
                 paymentInfoVo.setSuccessTime(String.valueOf(alipayTradeQueryResponse.getSendPayDate()));
-                WxPayOrderQueryV3Result.Payer payer = new WxPayOrderQueryV3Result.Payer();
-                payer.setOpenid(alipayTradeQueryResponse.getBuyerOpenId());
-                paymentInfoVo.setPayer(payer);
-                WxPayOrderQueryV3Result.Amount amount = new WxPayOrderQueryV3Result.Amount();
-                amount.setTotal(new BigDecimal(alipayTradeQueryResponse.getTotalAmount()).multiply(new BigDecimal("100")).intValue());
-                amount.setPayerTotal(new BigDecimal(alipayTradeQueryResponse.getReceiptAmount()).multiply(new BigDecimal("100")).intValue());
-                amount.setCurrency(alipayTradeQueryResponse.getPayCurrency());
-                amount.setPayerCurrency(alipayTradeQueryResponse.getPayCurrency());
-                paymentInfoVo.setAmount(amount);
                 boolean paymentResult = paymentInfoService.createPaymentInfo(paymentInfoVo);
                 if (!updateOrderStatus & !addWalletBalance & !paymentResult) {
                     throw new BusinessException(ErrorCode.OPERATION_ERROR);
@@ -370,15 +360,6 @@ public class AlipayOrderServiceImpl extends ServiceImpl<ProductOrderMapper, Prod
         paymentInfoVo.setTradeState(response.getTradeStatus());
         paymentInfoVo.setTradeStateDesc("支付成功");
         paymentInfoVo.setSuccessTime(response.getNotifyTime());
-        WxPayOrderQueryV3Result.Payer payer = new WxPayOrderQueryV3Result.Payer();
-        payer.setOpenid(response.getBuyerId());
-        paymentInfoVo.setPayer(payer);
-        WxPayOrderQueryV3Result.Amount amount = new WxPayOrderQueryV3Result.Amount();
-        amount.setTotal(new BigDecimal(response.getTotalAmount()).multiply(new BigDecimal("100")).intValue());
-        amount.setPayerTotal(new BigDecimal(response.getReceiptAmount()).multiply(new BigDecimal("100")).intValue());
-        amount.setCurrency("CNY");
-        amount.setPayerCurrency("CNY");
-        paymentInfoVo.setAmount(amount);
         boolean paymentResult = paymentInfoService.createPaymentInfo(paymentInfoVo);
         // 更新活动表
         boolean rechargeActivity = saveRechargeActivity(productOrder);

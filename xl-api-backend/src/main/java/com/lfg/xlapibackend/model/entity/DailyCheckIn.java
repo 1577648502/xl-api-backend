@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,34 +16,42 @@ import java.util.Date;
  * @Version: 1.0
  * @Description: 每日签到表
  */
+@Schema(description = ": 每日签到表")
 @TableName(value = "daily_check_in")
 @Data
 public class DailyCheckIn implements Serializable {
+    @Schema(hidden = true)
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
      * id
      */
+    @Schema(description = "id")
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     /**
      * 签到人
      */
+    @Schema(description = "签到人")
     private Long userId;
     /**
      * 描述
      */
+    @Schema(description = "描述")
     private String description;
     /**
      * 签到增加积分个数
      */
+    @Schema(description = "签到增加积分个数")
     private Integer addPoints;
     /**
      * 创建时间
      */
+    @Schema(description = "创建时间")
     private Date createTime;
     /**
      * 更新时间
      */
+    @Schema(description = "更新时间")
     private Date updateTime;
 }

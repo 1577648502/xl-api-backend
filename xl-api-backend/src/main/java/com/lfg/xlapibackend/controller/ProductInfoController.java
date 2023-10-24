@@ -16,6 +16,8 @@ import com.lfg.xlapibackend.model.enums.ProductInfoStatusEnum;
 import com.lfg.xlapibackend.model.vo.UserVO;
 import com.lfg.xlapibackend.service.ProductInfoService;
 import com.lfg.xlapibackend.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,6 +37,7 @@ import static com.lfg.xlapibackend.constant.UserConstant.ADMIN_ROLE;
  *
  * @author lfg
  */
+@Tag(name = "endregion", description = "endregion")
 @RestController
 @RequestMapping("/productInfo")
 @Slf4j
@@ -57,6 +60,7 @@ public class ProductInfoController {
      * @param request               请求
      * @return {@link BaseResponse}<{@link Long}>
      */
+    @Operation(summary = "添加接口信息 创建", description = "添加接口信息 创建")
     @PostMapping("/add")
     @AuthCheck(mustRole = ADMIN_ROLE)
     public BaseResponse<Long> addProductInfo(@RequestBody ProductInfoAddRequest productInfoAddRequest, HttpServletRequest request) {
@@ -84,6 +88,7 @@ public class ProductInfoController {
      * @param request       请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "删除接口信息", description = "删除接口信息")
     @PostMapping("/delete")
     @AuthCheck(mustRole = ADMIN_ROLE)
     public BaseResponse<Boolean> deleteProductInfo(@RequestBody DeleteRequest deleteRequest, HttpServletRequest request) {
@@ -113,6 +118,7 @@ public class ProductInfoController {
      * @param request                  请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "更新接口信息 更新", description = "更新接口信息 更新")
     @PostMapping("/update")
     @AuthCheck(mustRole = ADMIN_ROLE)
     @Transactional(rollbackFor = Exception.class)
@@ -146,6 +152,7 @@ public class ProductInfoController {
      * @param id id
      * @return {@link BaseResponse}<{@link ProductInfo}>
      */
+    @Operation(summary = "通过id获取接口信息", description = "通过id获取接口信息")
     @GetMapping("/get")
     public BaseResponse<ProductInfo> getProductInfoById(long id) {
         if (id <= 0) {
@@ -161,6 +168,7 @@ public class ProductInfoController {
      * @param productInfoQueryRequest 接口信息查询请求
      * @return {@link BaseResponse}<{@link List}<{@link ProductInfo}>>
      */
+    @Operation(summary = "获取列表（仅管理员可使用）", description = "获取列表（仅管理员可使用）")
     @AuthCheck(mustRole = ADMIN_ROLE)
     @GetMapping("/list")
     public BaseResponse<List<ProductInfo>> listProductInfo(ProductInfoQueryRequest productInfoQueryRequest) {
@@ -182,6 +190,7 @@ public class ProductInfoController {
      * @param request                 请求
      * @return {@link BaseResponse}<{@link Page}<{@link ProductInfo}>>
      */
+    @Operation(summary = "分页获取列表", description = "分页获取列表")
     @GetMapping("/list/page")
     public BaseResponse<Page<ProductInfo>> listProductInfoByPage(ProductInfoQueryRequest productInfoQueryRequest, HttpServletRequest request) {
         if (productInfoQueryRequest == null) {
@@ -229,6 +238,7 @@ public class ProductInfoController {
      * @param request                 请求
      * @return {@link BaseResponse}<{@link Page}<{@link ProductInfo}>>
      */
+    @Operation(summary = "分页获取列表", description = "分页获取列表")
     @GetMapping("/get/searchText")
     public BaseResponse<Page<ProductInfo>> listProductInfoBySearchTextPage(ProductInfoSearchTextRequest productInfoQueryRequest, HttpServletRequest request) {
         if (productInfoQueryRequest == null) {
@@ -264,6 +274,7 @@ public class ProductInfoController {
      * @param idRequest id请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "发布", description = "发布")
     @AuthCheck(mustRole = ADMIN_ROLE)
     @PostMapping("/online")
     public BaseResponse<Boolean> onlineProductInfo(@RequestBody IdRequest idRequest) {
@@ -285,6 +296,7 @@ public class ProductInfoController {
      * @param idRequest id请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "下线", description = "下线")
     @PostMapping("/offline")
     @AuthCheck(mustRole = ADMIN_ROLE)
     public BaseResponse<Boolean> offlineProductInfo(@RequestBody IdRequest idRequest) {

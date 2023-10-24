@@ -10,6 +10,8 @@ import com.lfg.xlapibackend.model.vo.UserVO;
 import com.lfg.xlapibackend.service.DailyCheckInService;
 import com.lfg.xlapibackend.service.UserService;
 import com.lfg.xlapibackend.utils.RedissonLockUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Version: 1.0
  * @Description: 签到接口
  */
+@Tag(name = "endregion", description = "endregion")
 @RestController
 @RequestMapping("/dailyCheckIn")
 @Slf4j
@@ -47,6 +50,7 @@ public class DailyCheckInController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link Boolean}>
      */
+    @Operation(summary = "签到", description = "签到")
     @PostMapping("/doCheckIn")
     @Transactional(rollbackFor = Exception.class)
     public BaseResponse<Boolean> doDailyCheckIn(HttpServletRequest request) {

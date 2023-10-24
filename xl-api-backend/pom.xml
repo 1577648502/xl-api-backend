@@ -51,10 +51,10 @@
             <artifactId>minio</artifactId>
             <version>8.0.3</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-pay</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github.binarywang</groupId>-->
+<!--            <artifactId>weixin-java-pay</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
@@ -115,11 +115,6 @@
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>jakarta.mail</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.lfg</groupId>
-            <artifactId>xl-api-sdk</artifactId>
-            <version>0.0.4</version>
         </dependency>
     </dependencies>
 

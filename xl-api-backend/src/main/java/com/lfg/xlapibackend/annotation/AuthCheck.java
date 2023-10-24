@@ -10,7 +10,9 @@ import java.lang.annotation.Target;
  *
  * @author lfg
  */
+//指定该注解智能在方法上应用
 @Target(ElementType.METHOD)
+//注解在运行时有效
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuthCheck {
 
