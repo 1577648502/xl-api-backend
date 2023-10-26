@@ -16,9 +16,9 @@
 </a>
     <img alt="SpringBoot" src="https://raster.shields.io/badge/SpringBoot-2.7+-green.svg"/>
 <a href="https://github.com/1577648502/xl-api-backend" target="_blank">
-    <img src='https://img.shields.io/github/forks/1577648502/xl-api' alt='GitHub forks' class="no-zoom">
+    <img src='https://img.shields.io/github/forks/1577648502/xl-api-backend' alt='GitHub forks' class="no-zoom">
 </a>
-<a href="https://github.com/1577648502/xl-api-backend" target="_blank"><img src='https://img.shields.io/github/stars/1577648502/xl-api' alt='GitHub stars' class="no-zoom">
+<a href="https://github.com/1577648502/xl-api-backend" target="_blank"><img src='https://img.shields.io/github/stars/1577648502/xl-api-backend' alt='GitHub stars' class="no-zoom">
 </a>
 </div>
 
