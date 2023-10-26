@@ -80,6 +80,10 @@ public class ServiceController {
     public ResultResponse getDelivery(DeliveryParams deliveryParams) {
         return ResponseUtils.baseResponse("https://api.oioweb.cn/api/common/delivery", deliveryParams);
     }
+    @GetMapping("/qZoneVisitor")
+    public ResultResponse getQZoneVisitor(QzoneVisitorParams qzoneVisitorParams) {
+        return ResponseUtils.baseResponse("https://api.oioweb.cn/api/qq/QzoneVisitor", qzoneVisitorParams);
+    }
     @GetMapping("/oneDayEnglish")
     public String getOneDayEnglish()  {
         return RequestUtils.get("https://api.oioweb.cn/api/common/OneDayEnglish");
@@ -87,5 +91,13 @@ public class ServiceController {
     @GetMapping("/hotList")
     public String getHotList()  {
         return RequestUtils.get("https://api.oioweb.cn/api/common/HotList");
+    }
+    @GetMapping("/gasolinePriceQuery")
+    public String getGasolinePriceQuery()  {
+        return RequestUtils.get("https://api.oioweb.cn/api/common/GasolinePriceQuery");
+    }
+    @GetMapping("/history")
+    public String getHistory()  {
+        return RequestUtils.get("https://api.oioweb.cn/api/common/history");
     }
 }
