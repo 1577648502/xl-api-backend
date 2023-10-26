@@ -4,10 +4,10 @@
 <h1 align="center">xl-api 接口开放平台</h1>
 <p align="center"><strong>xl-api 接口开放平台是一个为用户和开发者提供全面API接口调用服务的平台 🛠</strong></p>
 <div align="center">
-<a target="_blank" href="https://github.com/1577648502/xl-api">
-    <img alt="" src="https://github.com/1577648502/xl-api/badge/star.svg?theme=gvp"/>
+<a target="_blank" href="https://github.com/1577648502/xl-api-backend">
+    <img alt="" src="https://github.com/1577648502/xl-api-backend/badge/star.svg?theme=gvp"/>
 </a>
-<a target="_blank" href="https://github.com/1577648502/xl-api">
+<a target="_blank" href="https://github.com/1577648502/xl-api-backend">
     <img alt="" src="https://img.shields.io/github/stars/1577648502/xl-api.svg?style=social&label=Stars"/>
 </a>
     <img alt="Maven" src="https://raster.shields.io/badge/Maven-3.8.1-red.svg"/>
@@ -15,10 +15,10 @@
         <img alt="" src="https://img.shields.io/badge/JDK-1.8+-green.svg"/>
 </a>
     <img alt="SpringBoot" src="https://raster.shields.io/badge/SpringBoot-2.7+-green.svg"/>
-<a href="https://github.com/1577648502/xl-api" target="_blank">
+<a href="https://github.com/1577648502/xl-api-backend" target="_blank">
     <img src='https://img.shields.io/github/forks/1577648502/xl-api' alt='GitHub forks' class="no-zoom">
 </a>
-<a href="https://github.com/1577648502/xl-api" target="_blank"><img src='https://img.shields.io/github/stars/1577648502/xl-api' alt='GitHub stars' class="no-zoom">
+<a href="https://github.com/1577648502/xl-api-backend" target="_blank"><img src='https://img.shields.io/github/stars/1577648502/xl-api' alt='GitHub stars' class="no-zoom">
 </a>
 </div>
 
