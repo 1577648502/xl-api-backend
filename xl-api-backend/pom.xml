@@ -7,7 +7,7 @@
         <groupId>com.lfg</groupId>
         <artifactId>xl-api</artifactId>
         <version>0.0.1</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath><!-- lookup parent from repository -->
     </parent>
     <artifactId>xl-api-backend</artifactId>
     <version>0.0.1</version>
@@ -26,11 +26,12 @@
         <dependency>
             <groupId>com.lfg</groupId>
             <artifactId>xl-api-common</artifactId>
+
         </dependency>
         <dependency>
             <groupId>com.lfg</groupId>
             <artifactId>xl-api-sdk</artifactId>
-            <version>0.0.4</version>
+            <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -31,6 +31,9 @@ public class UserInterfaceInvokeServiceImpl extends ServiceImpl<UserInterfaceInv
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    /**
+     * 用户调用完接口更新数据库的调用次数以及用户积分
+     */
     public boolean invoke(Long interfaceInfoId, Long userId, Integer reduceScore) {
         LambdaQueryWrapper<UserInterfaceInvoke> invokeLambdaQueryWrapper = new LambdaQueryWrapper<>();
         invokeLambdaQueryWrapper.eq(UserInterfaceInvoke::getInterfaceId, interfaceInfoId);

@@ -19,7 +19,7 @@ import com.lfg.xlapibackend.model.vo.UserVO;
 import com.lfg.xlapibackend.service.InterfaceInfoService;
 import com.lfg.xlapibackend.service.UserService;
 import com.lfg.xlapicommon.model.entity.InterfaceInfo;
-import com.lfg.xlapisdk.client.QiApiClient;
+import com.lfg.xlapisdk.client.XlApiClient;
 import com.lfg.xlapisdk.model.request.CurrencyRequest;
 import com.lfg.xlapisdk.model.response.ResultResponse;
 import com.lfg.xlapisdk.service.ApiService;
@@ -402,12 +402,12 @@ public class InterfaceInfoController {
         String accessKey = loginUser.getAccessKey();
         String secretKey = loginUser.getSecretKey();
         try {
-            QiApiClient qiApiClient = new QiApiClient(accessKey, secretKey);
+            XlApiClient xlApiClient = new XlApiClient(accessKey, secretKey);
             CurrencyRequest currencyRequest = new CurrencyRequest();
             currencyRequest.setMethod(interfaceInfo.getMethod());
             currencyRequest.setPath(interfaceInfo.getUrl());
             currencyRequest.setRequestParams(params);
-            ResultResponse response = apiService.request(qiApiClient, currencyRequest);
+            ResultResponse response = apiService.request(xlApiClient, currencyRequest);
             System.out.println(response.getData());
             return ResultUtils.success(response.getData());
         } catch (Exception e) {

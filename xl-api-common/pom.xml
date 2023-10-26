@@ -6,7 +6,7 @@
         <groupId>com.lfg</groupId>
         <artifactId>xl-api</artifactId>
         <version>0.0.1</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <artifactId>xl-api-common</artifactId>
     <version>0.0.1</version>

@@ -8,20 +8,16 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.alipay.api.response.AlipayTradeRefundResponse;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.ijpay.alipay.AliPayApi;
-import com.lfg.xlapibackend.common.BaseResponse;
 import com.lfg.xlapibackend.common.ErrorCode;
-import com.lfg.xlapibackend.common.ResultUtils;
 import com.lfg.xlapibackend.exception.BusinessException;
-import com.lfg.xlapibackend.model.dto.interfaceinfo.InvokeRequest;
 import com.lfg.xlapibackend.model.entity.User;
 import com.lfg.xlapibackend.model.enums.InterfaceStatusEnum;
 import com.lfg.xlapicommon.model.entity.InterfaceInfo;
 import com.lfg.xlapicommon.model.vo.UserVO;
 import com.lfg.xlapicommon.service.inner.InnerUserInterfaceInvokeService;
-import com.lfg.xlapisdk.client.QiApiClient;
+import com.lfg.xlapisdk.client.XlApiClient;
 import com.lfg.xlapisdk.model.request.CurrencyRequest;
 import com.lfg.xlapisdk.model.response.ResultResponse;
 import com.lfg.xlapisdk.service.ApiService;
@@ -31,12 +27,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 
@@ -182,12 +175,12 @@ class UserServiceTest {
         String accessKey = "d6e8355787fb5dc52f7833d0c6d06494";
         String secretKey = "6decf70188bdbf9ea7b14fd7f7b0e0dd";
         try {
-            QiApiClient qiApiClient = new QiApiClient(accessKey, secretKey);
+            XlApiClient xlApiClient = new XlApiClient(accessKey, secretKey);
             CurrencyRequest currencyRequest = new CurrencyRequest();
             currencyRequest.setMethod(interfaceInfo.getMethod());
             currencyRequest.setPath(interfaceInfo.getUrl());
             currencyRequest.setRequestParams(params);
-            ResultResponse response = apiService.request(qiApiClient, currencyRequest);
+            ResultResponse response = apiService.request(xlApiClient, currencyRequest);
             System.out.println(response.getData());
         } catch (Exception e) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, e.getMessage());

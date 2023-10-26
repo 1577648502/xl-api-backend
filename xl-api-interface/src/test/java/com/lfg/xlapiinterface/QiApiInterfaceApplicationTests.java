@@ -1,7 +1,7 @@
 package com.lfg.xlapiinterface;
 
 
-import com.lfg.xlapisdk.client.QiApiClient;
+import com.lfg.xlapisdk.client.XlApiClient;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ import java.text.MessageFormat;
 @Slf4j
 class QiApiInterfaceApplicationTests {
     @Resource
-    private QiApiClient qiApiClient;
+    private XlApiClient xlApiClient;
 
 
     @Resource

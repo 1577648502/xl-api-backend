@@ -2,7 +2,6 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <groupId>com.lfg</groupId>
@@ -10,7 +9,6 @@
     <version>0.0.1</version>
     <name>xl-api</name>
     <description>xl-api 接口开放平台</description>
-
     <properties>
         <spring-boot-dependencies.version>2.7.0</spring-boot-dependencies.version>
         <java.version>1.8</java.version>
@@ -20,7 +18,7 @@
         <knife4j-spring-boot-starter.version>3.0.3</knife4j-spring-boot-starter.version>
         <junit.version>4.13.2</junit.version>
         <EasyWeb.version>0.0.5</EasyWeb.version>
-        <xl-api-sdk.version>0.0.3</xl-api-sdk.version>
+        <xl-api-sdk.version>0.0.1</xl-api-sdk.version>
         <hutool-all.version>5.8.16</hutool-all.version>
         <redisson.version>3.17.5</redisson.version>
 <!--        <weixin-java-pay.version>4.5.0</weixin-java-pay.version>-->
@@ -36,7 +34,6 @@
         <module>xl-api-interface</module>
         <module>xl-api-gateway</module>
         <module>xl-api-common</module>
-        <module>xl-api-sdk</module>
     </modules>
 
     <dependencyManagement>
@@ -102,11 +99,11 @@
                 <artifactId>EasyWeb</artifactId>
                 <version>${EasyWeb.version}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>icu.qimuu</groupId>-->
-<!--                <artifactId>qi-api-sdk</artifactId>-->
-<!--                <version>${xl-api-sdk.version}</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>com.lfg</groupId>
+                <artifactId>xl-api-sdk</artifactId>
+                <version>${xl-api-sdk.version}</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/junit/junit -->
             <dependency>
                 <groupId>junit</groupId>
@@ -144,3 +141,9 @@
         </pluginManagement>
     </build>
 </project>
+
+
+
+
+
+

@@ -25,6 +25,9 @@ public class InnerUserServiceImpl implements InnerUserService {
     private UserService userService;
 
     @Override
+    /**
+     * 根据用户传递的accessKey获取用户信息
+     */
     public UserVO getInvokeUserByAccessKey(String accessKey) {
         if (StringUtils.isAnyBlank(accessKey)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);

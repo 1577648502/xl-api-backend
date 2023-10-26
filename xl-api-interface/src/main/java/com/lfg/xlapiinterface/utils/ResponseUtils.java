@@ -8,6 +8,7 @@ import com.lfg.xlapisdk.exception.ApiException;
 import com.lfg.xlapisdk.model.response.ResultResponse;
 
 import java.util.Map;
+
 import static com.lfg.xlapiinterface.utils.RequestUtils.get;
 
 
@@ -28,9 +29,17 @@ public class ResponseUtils {
         try {
             response = get(baseUrl, params);
             Map<String, Object> fromResponse = responseToMap(response);
-            boolean success = (boolean) fromResponse.get("success");
+            Object code = "400";
+            if (fromResponse.get("code")!=null){
+                code = fromResponse.get("code").toString();
+            }
+
+            boolean success = false;
+            if (fromResponse.get("success") != null) {
+                success = (boolean) fromResponse.get("success");
+            }
             ResultResponse baseResponse = new ResultResponse();
-            if (!success) {
+            if (!success || !code.equals("200.0")) {
                 baseResponse.setData(fromResponse);
                 return baseResponse;
             }

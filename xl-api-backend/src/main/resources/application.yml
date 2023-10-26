@@ -5,22 +5,30 @@ spring:
     name: xl-api-backend
   # DataSource Config todo 修改为自己的数据库配置
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/qi_api
+    url: jdbc:mysql://rm-cn-g4t3fubq7000swfo.rwlb.rds.aliyuncs.com/xl_api
     username: root
-    password: 12345678
+    password: lfg!1314
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/xl_api
+#    username: root
+#    password: 12345678
+
   mvc:
     path match:
       matching-strategy: ANT_PATH_MATCHER
   # session 失效时间（分钟）
   session:
-    timeout: 86400
+    timeout: 3600
     store-type: redis
   # redis 配置
   redis:
-    port: 6379
-    host: localhost
-    database: 0
+#    port: 6379
+#    host: localhost
+#    database: 0
+    host: 110.41.132.124
+    port: 7529
+    database: 1
+    password: 12345678
   #  邮箱配置 todo 修改为自己的邮箱发送配置
   mail:
     host: smtp.qq.com
@@ -33,7 +41,7 @@ spring:
           ssl:
             enable: true
 server:
-  port: 7529
+  port: 8088
   address: 0.0.0.0
   servlet:
     context-path: /api
@@ -61,7 +69,13 @@ mybatis-plus:
 #      host:  http://localhost:8081/api
 
 minio:
-  host: http://127.0.0.1:9000
+#  host: http://127.0.0.1:9000
+#  url: ${minio.host}/${minio.bucket}/
+#  access-key: minioadmin
+#  secret-key: minioadmin
+#  bucket: public
+
+  host: http://110.41.132.124:9000
   url: ${minio.host}/${minio.bucket}/
   access-key: minioadmin
   secret-key: minioadmin
@@ -84,7 +98,7 @@ alipay:
   sellerId: 2088721016663828
   # 本地测试用ngrok内网穿透，这个内网穿透地址，可以修改为自己的。上线修改为后端的接口地址即可
   #  notifyUrl: https://beloved-massive-sheepdog.ngrok-free.app/api/order/notify/order
-  notifyUrl: https://7177-2408-8956-7a80-3870-904c-8f5c-8031-8bd.ngrok-free.app/api/order/notify/order
+  notifyUrl: http://localhost:8088/api/order/notify/order
   returnUrl: http://localhost:8000/account/center
   private-key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDV9YDxtz0Mfb4rINeCq2L6Bh/33tXFWzLVn+FE+3QgIL4edxe9zi7Yu8mmQAxLmUUfCtNmfpoYuZHeyRCQwmoWqFWOYHohRn0ZGfHPpqVS++5KLbEopBbkRKD92IokLzTMW7umi8A+a2X847Hu5KTDpKHO71lwHsexq0b4W3ISXHK5yUphQ9sUUX6cXu5vPaORHqZ7NAD4fytwpvPtbf/ZrYfx3woQk/pGORJh3/GQhxOhCdBV9E6QVbWowYP/L1UJSR1/aWwqpRMT04+8+76Z+smzFRsnyeOTKKPYZWmR3K4qHXzIcObem6G+x/xM5KXV93osoYVRUeugkeFTw/2nAgMBAAECggEAXEK1C4YcSRqfujE7PRlyYKXrexMX0zZ0QTHkDb7wYDo+QRzRnAMgqEyxs4LCyoaZC727UuMcx7Sddhf1kLaE0Khd3Ds17stafkx1vTj66UHBizMQxZmcVWpSkaOiTeAdQFH+JN72UvQ00kvNGlp1wfdn3rfPNU3Qhoh43fdwxQFWVZpbSc3OxnRv3Vh82nFJnuqLdZaJjY7pcp5fRngBoGdrgrKdqZL/WOK+NG2ViG0AGZS7CIiA+cJV3aZM7KrJna6+ulDdivHTw1/Ti9v+xQ5BL5WROT9oT2AHPQZB4t0HOaebd/x/mH4D0BuImDxIw1TKHspci5FJTnxujdi+QQKBgQD1dKYc7BtkFrZ6v6qG1julqCwwkcolNbwtC4EJEW4YL+gpOSmjOroL+AV5y0g/JAfMTQtIXcYWTa1DsCiFQrLKYptmFptWgUB48Acq6ExTkMutbQwuSHlQJFxdH+H91cacvsmeM4wyqDbXIuKjVl+Sug5aF8SZB20rti0KHnMfHwKBgQDfJnnzxSepkoCK5MgrRrLj7XmYcUbKcIpUzTdwH7qx/tdX4+GkLe64rcU7i1yUebx5hsB9xqbLyeSihqxkyITkJa3JAo27jAxhtgvjJhK23bqhh3NEf8suT+Lvh6ezr+vMlbJlc6qM9gadL/U2ScehFMIfk/iKQW8oyBmSO4S4eQKBgCm/tH1Y33PPtSv9q7iRecW8a/+63GIl2KLkwQbU0yAEDf3s/hsIYxqkDfJgVCKBM15ZgGDHqmiiv6SyssGvzY9E5F+h2rwE8f1f/igbKNhR2YLe+GJq609pT9h7EspE8So5/TsOU3tORz2ibmAP0eO4B7blMghBTh1QOCrvcO9LAoGBAI1stjePiQ6IYd0lF9ONkAyyUbESgZoFbzZFhVATW+A5McNrEnNaBQSYZPrS3Q7ghFnE1DQidU2Mm9GBZrrM9qQdWSGe87KcFLDMjoYceBnbNs/up1gPYfbs/FdwcxGHefsEGLcBcmK5/gEbBt6sLc/h9xHKVudQhyGih8pM3FWJAoGBAL41VBREZrmc7KGAjLIRzaserIjOl7xgw9cX3pmEB3L7euJujeU+bPJiyPmZ6KHVUqGasDwyG9la8k4lzDmGuiu0NL/FmgJmfH27/kXIQHdaGZZ+pvdRelTFPDkNukbE3JRNfYYqjrywgsccDYE862avg8hTrD/bYvXxwAkC5Px6
   ali-pay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhCSS4/8LoFrAYmtizrspeNVC7WICAB5wTSPJnsSPwSmV3ZewKzjTdZinu6RwqciqjS8Jyf+/zCN3FGpkxaXHhKHohhJZILTd5A9crK4ijsSwXm+59PBG7IUdPccZQyMJu4ASbTfaCxdw5pT1stCLqWcADnYI5yde2Z0erIujserhyEY9i4dfGOixKBZUHIEzbpmBSs1TrAUlXjlB3qURNfmMY5ValPk4PZrzdtIqh8Al13J0pAtOW1mEgBMYVDCbIKav3rgkCPeGiFXLDf6paR9u0qtXczp8pDBMgHxevpH+RzYqRomjXvoI2XtBPxdKsROjn4Pa5Z6SC2vLS9n1EwIDAQAB
@@ -99,4 +113,7 @@ dubbo:
   registry:
     id: nacos-registry
     # todo 线上修改为服务器内网地址，参考nacos启动后的链接
-    address: nacos://localhost:8848
+#    address: nacos://172.17.0.3:8848
+#    address: nacos://127.0.0.1:8848
+#    address: nacos://110.41.132.124:8848
+    address: nacos://18.162.214.254:8848

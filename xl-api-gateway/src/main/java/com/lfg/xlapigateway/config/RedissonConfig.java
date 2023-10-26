@@ -21,13 +21,14 @@ public class RedissonConfig {
     private String host;
 
     private String port;
+    private String password;
 
     @Bean
     public RedissonClient redissonClient() {
         // 1. 创建配置
         Config config = new Config();
         String redisAddress = String.format("redis://%s:%s", host, port);
-        config.useSingleServer().setAddress(redisAddress).setDatabase(4);
+        config.useSingleServer().setAddress(redisAddress).setDatabase(4).setPassword(password);
         // 2. 创建实例
         return Redisson.create(config);
     }

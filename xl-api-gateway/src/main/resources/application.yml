@@ -9,9 +9,13 @@ spring:
           predicates:
             - Path=/api/**
   redis:
-    port: 6379
-    host: localhost
+    host: 110.41.132.124
+    port: 7529
     database: 0
+    password: 12345678
+#    host: localhost
+#    port: 6379
+#    database: 0
 logging:
   level:
     org:
@@ -29,4 +33,7 @@ dubbo:
     port: -1
   registry:
     id: nacos-registry
-    address: nacos://localhost:8848
+#    address: nacos://172.17.0.3:8848
+#    address: nacos://127.0.0.1:8848
+#    address: nacos://110.41.132.124:8848
+    address: nacos://18.162.214.254:8848

@@ -22,6 +22,9 @@ public class InnerInterfaceInfoServiceImpl implements InnerInterfaceInfoService 
     private InterfaceInfoService interfaceInfoService;
 
     @Override
+    /**
+     * 根据用户传递的链接和请求类型查询数据库查看接口是否存在
+     */
     public InterfaceInfo getInterfaceInfo(String path, String method) {
         // 如果带参数，去除第一个？和之后后的参数
         if (path.contains("?")) {

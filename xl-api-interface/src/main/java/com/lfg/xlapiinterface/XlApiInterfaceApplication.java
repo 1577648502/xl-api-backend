@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author lfg
  * @Date: 2023/09/15 09:32:18
  * @Version: 1.0
- * @Description: qi api接口应用程序
+ * @Description: xl api接口应用程序
  */
 @SpringBootApplication
 public class XlApiInterfaceApplication {

@@ -76,4 +76,16 @@ public class ServiceController {
     public ResultResponse getWeatherInfo(WeatherParams weatherParams) {
         return ResponseUtils.baseResponse("https://api.vvhan.com/api/weather", weatherParams);
     }
+    @GetMapping("/delivery")
+    public ResultResponse getDelivery(DeliveryParams deliveryParams) {
+        return ResponseUtils.baseResponse("https://api.oioweb.cn/api/common/delivery", deliveryParams);
+    }
+    @GetMapping("/oneDayEnglish")
+    public String getOneDayEnglish()  {
+        return RequestUtils.get("https://api.oioweb.cn/api/common/OneDayEnglish");
+    }
+    @GetMapping("/hotList")
+    public String getHotList()  {
+        return RequestUtils.get("https://api.oioweb.cn/api/common/HotList");
+    }
 }

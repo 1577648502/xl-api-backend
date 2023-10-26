@@ -97,6 +97,7 @@ public class GatewayGlobalFilter implements GlobalFilter, Ordered {
             throw new BusinessException(ErrorCode.FORBIDDEN_ERROR);
         }
 
+        //网关获取请求头
         HttpHeaders headers = request.getHeaders();
         String body = headers.getFirst("body");
         String accessKey = headers.getFirst("accessKey");
@@ -108,6 +109,7 @@ public class GatewayGlobalFilter implements GlobalFilter, Ordered {
         }
         // 防重发XHR
         long currentTime = System.currentTimeMillis() / 1000;
+        //断言时间是否为空
         assert timestamp != null;
         if (currentTime - Long.parseLong(timestamp) >= FIVE_MINUTES) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR, "会话已过期,请重试！");
@@ -131,7 +133,9 @@ public class GatewayGlobalFilter implements GlobalFilter, Ordered {
             if (user.getBalance() <= 0) {
                 throw new BusinessException(ErrorCode.OPERATION_ERROR, "余额不足，请先充值。");
             }
+            //获取请求方式
             String method = Objects.requireNonNull(request.getMethod()).toString();
+            //获取请求uri并去除空格
             String uri = request.getURI().toString().trim();
 
             if (StringUtils.isAnyBlank(uri, method)) {
@@ -157,7 +161,7 @@ public class GatewayGlobalFilter implements GlobalFilter, Ordered {
                 for (RequestParamsField requestParamsField : list) {
                     if ("是".equals(requestParamsField.getRequired())) {
                         if (StringUtils.isBlank(queryParams.getFirst(requestParamsField.getFieldName())) || !queryParams.containsKey(requestParamsField.getFieldName())) {
-                            throw new BusinessException(ErrorCode.FORBIDDEN_ERROR, "请求参数有误，" + requestParamsField.getFieldName() + "为必选项，详细参数请参考API文档：https://doc.qimuu.icu/");
+                            throw new BusinessException(ErrorCode.FORBIDDEN_ERROR, "请求参数有误，" + requestParamsField.getFieldName() + "为必选项，详细参数请参考API文档：http://110.41.132.124:89");
                         }
                     }
                 }
