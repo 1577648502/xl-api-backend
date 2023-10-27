@@ -313,8 +313,8 @@ public class UserController {
 
         // 管理员才能操作
         boolean adminOperation = ObjectUtils.isNotEmpty(userUpdateRequest.getBalance())
-                || StringUtils.isNoneBlank(userUpdateRequest.getUserRole())
-                || StringUtils.isNoneBlank(userUpdateRequest.getUserPassword());
+                || StringUtils.isNoneBlank(userUpdateRequest.getUserRole());
+//                || StringUtils.isNoneBlank(userUpdateRequest.getUserPassword());
         // 校验是否登录
         UserVO loginUser = userService.getLoginUser(request);
         // 处理管理员业务,不是管理员抛异常
